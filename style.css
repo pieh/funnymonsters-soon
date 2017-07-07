@@ -18,9 +18,11 @@ body {
   background-position: left center;
   background-size: cover;
   opacity: 0;
-  transition: all 1.5s cubic-bezier(0.7, 0, 0.3, 1) 0s; }
+  transition: opacity 1.5s cubic-bezier(0.7, 0, 0.3, 1), transform 2s cubic-bezier(0.7, 0, 0.3, 1);
+  transform: scale(1.2); }
   .loaded .background {
-    opacity: 1; }
+    opacity: 1;
+    transform: none; }
 
 .overlay {
   position: absolute;
@@ -31,7 +33,7 @@ body {
   width: 90%;
   transform: translateX(-45%); }
   .loaded .overlay {
-    animation: overlayAnim 3s cubic-bezier(0.7, 0, 0.52, 1.91) both 1.5s;
+    animation: overlayAnim 3s cubic-bezier(0.7, 0, 0.52, 1.91) both 0s;
     transform: skew(25deg, 0deg); }
 
 .content-wrapper {
@@ -92,5 +94,3 @@ body {
 .word--playful span span {
   display: block;
   pointer-events: none; }
-
-/*# sourceMappingURL=style.css.map */
