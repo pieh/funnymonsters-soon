@@ -1,5 +1,5 @@
 {
-    var delay = 3000;
+    var delay = 1000;
 
     class Letter {
         constructor(letter, pos) {

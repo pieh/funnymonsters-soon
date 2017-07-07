@@ -51,7 +51,7 @@ body {
   font-size: 2vw;
   opacity: 0;
   transform: translateY(20px);
-  transition: all 0.3s cubic-bezier(0.7, 0, 0.3, 1) 7000ms; }
+  transition: all 0.3s cubic-bezier(0.7, 0, 0.3, 1) 4600ms; }
   .loaded .coming-soon {
     opacity: 1;
     transform: translateY(0); }
@@ -92,3 +92,5 @@ body {
 .word--playful span span {
   display: block;
   pointer-events: none; }
+
+/*# sourceMappingURL=style.css.map */
