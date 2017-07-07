@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Amatic+SC");
+@import url("https://fonts.googleapis.com/css?family=Amatic+SC|Roboto:300,700&subset=latin-ext");
 html, body {
   overflow: hidden; }
 
@@ -24,18 +24,6 @@ body {
     opacity: 1;
     transform: none; }
 
-.overlay {
-  position: absolute;
-  background: rgba(32, 35, 45, 0.8);
-  top: 0;
-  left: -50%;
-  height: 100%;
-  width: 90%;
-  transform: translateX(-45%); }
-  .loaded .overlay {
-    animation: overlayAnim 3s cubic-bezier(0.7, 0, 0.52, 1.91) both 0s;
-    transform: skew(25deg, 0deg); }
-
 .content-wrapper {
   color: white;
   position: absolute;
@@ -44,46 +32,45 @@ body {
   bottom: 10%;
   text-align: center; }
 
+a {
+  color: #ffd600;
+  text-decoration: none;
+  font-weight: bold; }
+
 .content {
   display: inline-block;
-  text-align: right; }
+  text-align: left; }
 
 .coming-soon {
-  font-size: 2vw;
+  margin-top: 2em;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 1vw;
   opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.3s cubic-bezier(0.7, 0, 0.3, 1) 4600ms; }
+  transform: translateY(100%);
+  transition: transform 0.75s cubic-bezier(0.7, 0, 0.52, 1.91) 3800ms, opacity 0.2s cubic-bezier(0.7, 0, 0.3, 1) 3800ms; }
   .loaded .coming-soon {
     opacity: 1;
     transform: translateY(0); }
 
-@keyframes overlayAnim {
-  0% {
-    transform: translateX(-45%); }
-  15% {
-    transform: translateX(-30%); }
-  30% {
-    transform: translateX(-30%); }
-  45% {
-    transform: translateX(-15%); }
-  60% {
-    transform: translateX(-15%); }
-  75% {
-    transform: translateX(0); }
-  95% {
-    transform: translateX(0); }
-  100% {
-    transform: skew(25deg, 0deg); } }
+strong {
+  font-weight: bold; }
+
 .word--playful {
+  transform: translateY(48%);
+  transition: transform 0.45s cubic-bezier(0.03, 0.88, 0.52, 1.91) 4166ms;
   font-size: 0px;
   color: #fff;
   line-height: 0.65;
   margin: 0 0 1em 0; }
+  .loaded .word--playful {
+    transform: none; }
 
 .word--playful > span {
   font-size: 5vw;
   display: inline-block;
   padding: 1em 0 0;
+  cursor: pointer;
   position: relative;
   transition: opacity 0.3s cubic-bezier(0.7, 0, 0.3, 1);
   opacity: 0; }
@@ -93,5 +80,3 @@ body {
 .word--playful span span {
   display: block;
   pointer-events: none; }
-
-/*# sourceMappingURL=style.css.map */

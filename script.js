@@ -1,8 +1,12 @@
 {
     var delay = 1000;
+    var interval = 150;
 
     class Letter {
         constructor(letter, pos) {
+            this.triggetAnim = this.triggetAnim.bind(this)
+            this.scheduleRandomAnim = this.scheduleRandomAnim.bind(this)
+
             this.DOM = {};
             this.CONFIG = {
                 animations: [
@@ -408,14 +412,23 @@
             this.DOM.letter.innerHTML = '';
             this.DOM.letter.appendChild(this.DOM.letterInner);
         }
-        initEvents() {
+
+        triggetAnim() {
+            clearTimeout(this.randomAnim);
+
             let animOpts = {
                 targets: this.DOM.letterInner,
-                complete: () => this.isActive = false
+                complete: () => {
+                    this.isActive = false
+                    this.scheduleRandomAnim();
+                }
             };
 
-            const animation = this.CONFIG.animations[this.pos];
+            // const pos = anime.random(0, this.CONFIG.animations.length - 1)
+            const pos = Math.floor(Math.random() * this.CONFIG.animations.length )
 
+
+            const animation = this.CONFIG.animations[pos];
             this.DOM.letter.style.perspective = animation.perspective
                 ? `${animation.perspective}px`
                 : 'none';
@@ -428,26 +441,30 @@
                     : animation.origin)
                 : '50% 50%';
 
-            this.clickFn = () => {
+            if (this.isActive)
+                return;
+            this.isActive = true;
 
-                if (this.isActive)
-                    return;
-                this.isActive = true;
+            anime.remove(this.DOM.letterInner);
 
-                anime.remove(this.DOM.letterInner);
+            anime(Object.assign(animOpts, animation.opts));
+        }
 
-                anime(Object.assign(animOpts, animation.opts));
-            };
+        scheduleRandomAnim() {
+            this.randomAnim = setTimeout(this.triggetAnim, anime.random(4000, 20000));
+        }
 
+
+        initEvents() {
             setTimeout(function() {
                 this.DOM.letter.classList.add('ready');
-                anime(Object.assign(animOpts, animation.opts));
-
+                this.triggetAnim();
+                this.scheduleRandomAnim();
             }.bind(this), delay);
-            delay += 250;
+            delay += interval;
 
-            this.DOM.letter.addEventListener('click', this.clickFn);
-            this.DOM.letter.addEventListener('touchstart', this.clickFn);
+            this.DOM.letter.addEventListener('click', this.triggetAnim);
+            this.DOM.letter.addEventListener('touchstart', this.triggetAnim);
         }
     }
 
